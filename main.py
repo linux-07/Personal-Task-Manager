@@ -79,4 +79,25 @@ def mark_completed():
         print("Invalid Input. Please enter a valid number")
 
 def main():
-    pass
+    tasks.extend(load_tasks())
+
+    while True:
+        print("\nTask Manager Menu:")
+        print("1. List Tasks")
+        print("2. Add Task")
+        print("3. Mark Task as Completed")
+        print("4. Quit")
+
+        choice = int(input("Enter your choice: "))
+
+        if choice == 1:
+            list_tasks()
+        elif choice == 2:
+            add_task()
+        elif choice == 3:
+            mark_completed()
+        elif choice == 4:
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please try again.")
