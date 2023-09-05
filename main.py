@@ -3,6 +3,14 @@ from datetime import datetime
 # Create Empty Tasks list
 tasks = []
 
+# Create tasks file
+try:
+    x = open("tasks.txt", 'x')
+    x.close()
+
+except FileExistsError:
+    pass
+
 def save_tasks():
     with open("tasks.txt", 'w') as file:
         for task in tasks:
