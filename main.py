@@ -77,3 +77,6 @@ def mark_completed():
             print("Enter a valid task index.")
     except ValueError:
         print("Invalid Input. Please enter a valid number")
+
+def main():
+    pass
