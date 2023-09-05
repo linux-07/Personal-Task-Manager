@@ -31,3 +31,9 @@ def load_tasks():
                     task_info = {}
     except:
         raise FileNotFoundError
+
+def list_tasks():
+    if not tasks:
+        print("No tasks found!")
+    else:
+        pass
