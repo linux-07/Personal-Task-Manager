@@ -1,15 +1,15 @@
 from datetime import datetime
 
-# Create Empty Tasks list
+# Create an empty tasks list
 tasks = []
 
-# Create tasks file
+# Create or open the tasks file
 try:
     x = open("tasks.txt", 'x')
     x.close()
-
 except FileExistsError:
     pass
+
 
 def save_tasks():
     with open("tasks.txt", 'w') as file:
@@ -17,7 +17,8 @@ def save_tasks():
             file.write(f"Title: {task['title']}\n")
             file.write(f"Description: {task['description']}\n")
             file.write(f"Due Date: {task['due_date']}\n")
-            file.write(f"Status: {'completed' if task['completed'] else 'pending'}\n\n") # --> Short hand if-else used in the line
+            file.write(f"Status: {'completed' if task['completed'] else 'pending'}\n\n")
+
 
 def load_tasks():
     try:
@@ -33,12 +34,13 @@ def load_tasks():
                 elif line.startswith("Due Date: "):
                     task_info["due_date"] = line[len("Due Date: "):]
                 elif line.startswith("Status: "):
-                    task_info["completed"] = (line[len("Status: "):] == "Completed")
+                    task_info["completed"] = (line[len("Status: "):] == "completed")
                 elif not line:
                     tasks.append(task_info)
                     task_info = {}
-    except:
-        raise FileNotFoundError
+    except FileNotFoundError:
+        pass
+
 
 def list_tasks():
     if not tasks:
@@ -49,6 +51,7 @@ def list_tasks():
             print(f"   Description: {task['description']}")
             print(f"   Due Date: {task['due_date']}")
             print(f"   Status: {'Completed' if task['completed'] else 'Pending'}")
+
 
 def add_task():
     title = input("Enter task title: ")
@@ -72,13 +75,13 @@ def add_task():
     save_tasks()
     print("Task added successfully!")
 
+
 def mark_completed():
     list_tasks()
-    task_index = int(input("Enter the index of the task that you want to mark as completed: "))
     try:
-        task_index = task_index - 1
-        if 0<= task_index < len(tasks):
-            task_index[task_index]["completed"] = True
+        task_index = int(input("Enter the index of the task that you want to mark as completed: "))
+        if 1 <= task_index <= len(tasks):
+            tasks[task_index - 1]["completed"] = True
             save_tasks()
             print("Task Marked as Completed ✅")
         else:
@@ -86,8 +89,9 @@ def mark_completed():
     except ValueError:
         print("Invalid Input. Please enter a valid number")
 
+
 def main():
-    tasks.extend(load_tasks())
+    load_tasks()
 
     while True:
         print("\nTask Manager Menu:")
@@ -96,19 +100,23 @@ def main():
         print("3. Mark Task as Completed")
         print("4. Quit")
 
-        choice = int(input("Enter your choice: "))
+        try:
+            choice = int(input("Enter your choice: "))
 
-        if choice == 1:
-            list_tasks()
-        elif choice == 2:
-            add_task()
-        elif choice == 3:
-            mark_completed()
-        elif choice == 4:
-            print("Goodbye!")
-            break
-        else:
-            print("Invalid choice. Please try again.")
+            if choice == 1:
+                list_tasks()
+            elif choice == 2:
+                add_task()
+            elif choice == 3:
+                mark_completed()
+            elif choice == 4:
+                print("Goodbye!")
+                break
+            else:
+                print("Invalid choice. Please try again.")
+        except ValueError:
+            print("Invalid input. Please enter a valid number.")
+
 
 if __name__ == "__main__":
     main()
