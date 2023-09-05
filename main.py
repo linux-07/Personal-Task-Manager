@@ -56,7 +56,7 @@ def list_tasks():
 def add_task():
     title = input("Enter task title: ")
     description = input("Enter task description: ")
-    due_date = input("Enter due date (YYYY-MM-DD): ")
+    due_date = input("Enter due date (DD-MM-YYYY): ")
 
     try:
         due_date = datetime.strptime(due_date, "%Y-%m-%d")
