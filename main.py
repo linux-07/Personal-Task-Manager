@@ -24,7 +24,7 @@ def load_tasks():
     try:
         with open("tasks.txt", 'r') as file:
             lines = file.readlines()
-            task_info = {}
+            task_info = {"title": "", "description": "", "due_date": "", "completed": False}
             for line in lines:
                 line = line.strip()
                 if line.startswith("Title: "):
@@ -37,7 +37,7 @@ def load_tasks():
                     task_info["completed"] = (line[len("Status: "):] == "completed")
                 elif not line:
                     tasks.append(task_info)
-                    task_info = {}
+                    task_info = {"title": "", "description": "", "due_date": "", "completed": False}
     except FileNotFoundError:
         pass
 
@@ -59,7 +59,7 @@ def add_task():
     due_date = input("Enter due date (DD-MM-YYYY): ")
 
     try:
-        due_date = datetime.strptime(due_date, "%Y-%m-%d")
+        due_date = datetime.strptime(due_date, "%d-%m-%Y")
     except ValueError:
         print("Invalid date format. Use DD-MM-YYYY.")
         return
@@ -67,7 +67,7 @@ def add_task():
     task = {
         "title": title,
         "description": description,
-        "due_date": due_date.strftime("%Y-%m-%d"),
+        "due_date": due_date.strftime("%d-%m-%Y"),
         "completed": False
     }
 
