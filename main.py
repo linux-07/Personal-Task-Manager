@@ -14,6 +14,20 @@ def save_tasks():
 def load_tasks():
     try:
         with open("tasks.txt", 'r') as file:
-            pass
+            lines = file.readlines()
+            task_info = {}
+            for line in lines:
+                line = line.strip()
+                if line.startswith("Title: "):
+                    task_info["title"] = line[len("Title: "):]
+                elif line.startswith("Description: "):
+                    task_info["description"] = line[len("Description: "):]
+                elif line.startswith("Due Date: "):
+                    task_info["due_date"] = line[len("Due Date: "):]
+                elif line.startswith("Status: "):
+                    task_info["completed"] = (line[len("Status: "):] == "Completed")
+                elif not line:
+                    tasks.append(task_info)
+                    task_info = {}
     except:
         raise FileNotFoundError
