@@ -61,13 +61,13 @@ def add_task():
     try:
         due_date = datetime.strptime(due_date, "%Y-%m-%d")
     except ValueError:
-        print("Invalid date format. Use YYYY-MM-DD.")
+        print("Invalid date format. Use DD-MM-YYYY.")
         return
 
     task = {
         "title": title,
         "description": description,
-        "due_date": due_date.strftime("%Y-%m-%d"),
+        "due_date": due_date.strftime("%d-%m-%Y"),
         "completed": False
     }
 

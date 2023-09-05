@@ -1,5 +1,0 @@
-Title: Tabla
-Description: Play Tabla for 1 hour
-Due Date: 2023-09-05
-Status: pending
-
