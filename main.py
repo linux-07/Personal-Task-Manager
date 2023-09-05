@@ -63,3 +63,11 @@ def add_task():
     tasks.append(task)
     save_tasks()
     print("Task added successfully!")
+
+def mark_completed():
+    list_tasks()
+    task_index = int(input("Enter the index of the task that you want to mark as completed: "))
+    try:
+        pass
+    except
+        pass
