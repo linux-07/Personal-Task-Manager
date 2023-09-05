@@ -1,3 +1,4 @@
+# Required Modules
 from datetime import datetime
 
 # Create an empty tasks list
@@ -11,6 +12,7 @@ except FileExistsError:
     pass
 
 
+# Function to save tasks to text file
 def save_tasks():
     with open("tasks.txt", 'w') as file:
         for task in tasks:
@@ -20,6 +22,7 @@ def save_tasks():
             file.write(f"Status: {'completed' if task['completed'] else 'pending'}\n\n")
 
 
+# Function to load tasks from text file
 def load_tasks():
     try:
         with open("tasks.txt", 'r') as file:
@@ -42,6 +45,7 @@ def load_tasks():
         pass
 
 
+# List_tasks function
 def list_tasks():
     if not tasks:
         print("No tasks found.")
@@ -53,6 +57,7 @@ def list_tasks():
             print(f"   Status: {'Completed' if task['completed'] else 'Pending'}")
 
 
+# Function to add task
 def add_task():
     title = input("Enter task title: ")
     description = input("Enter task description: ")
@@ -76,6 +81,7 @@ def add_task():
     print("Task added successfully!")
 
 
+# function to mark the task as completed
 def mark_completed():
     list_tasks()
     try:
@@ -90,6 +96,7 @@ def mark_completed():
         print("Invalid Input. Please enter a valid number")
 
 
+# main function
 def main():
     load_tasks()
 
@@ -118,5 +125,6 @@ def main():
             print("Invalid input. Please enter a valid number.")
 
 
+# run program
 if __name__ == "__main__":
     main()
