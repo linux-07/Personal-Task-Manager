@@ -41,3 +41,25 @@ def list_tasks():
             print(f"   Description: {task['description']}")
             print(f"   Due Date: {task['due_date']}")
             print(f"   Status: {'Completed' if task['completed'] else 'Pending'}")
+
+def add_task():
+    title = input("Enter task title: ")
+    description = input("Enter task description: ")
+    due_date = input("Enter due date (YYYY-MM-DD): ")
+
+    try:
+        due_date = datetime.strptime(due_date, "%Y-%m-%d")
+    except ValueError:
+        print("Invalid date format. Use YYYY-MM-DD.")
+        return
+
+    task = {
+        "title": title,
+        "description": description,
+        "due_date": due_date.strftime("%Y-%m-%d"),
+        "completed": False
+    }
+
+    tasks.append(task)
+    save_tasks()
+    print("Task added successfully!")
