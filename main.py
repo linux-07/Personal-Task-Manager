@@ -34,6 +34,10 @@ def load_tasks():
 
 def list_tasks():
     if not tasks:
-        print("No tasks found!")
+        print("No tasks found.")
     else:
-        pass
+        for index, task in enumerate(tasks, 1):
+            print(f"{index}. Title: {task['title']}")
+            print(f"   Description: {task['description']}")
+            print(f"   Due Date: {task['due_date']}")
+            print(f"   Status: {'Completed' if task['completed'] else 'Pending'}")
