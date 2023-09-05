@@ -68,6 +68,12 @@ def mark_completed():
     list_tasks()
     task_index = int(input("Enter the index of the task that you want to mark as completed: "))
     try:
-        pass
-    except
-        pass
+        task_index = task_index - 1
+        if 0<= task_index < len(tasks):
+            task_index[task_index]["completed"] = True
+            save_tasks()
+            print("Task Marked as Completed ✅")
+        else:
+            print("Enter a valid task index.")
+    except ValueError:
+        print("Invalid Input. Please enter a valid number")
